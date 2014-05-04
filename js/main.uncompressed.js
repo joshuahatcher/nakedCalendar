@@ -87,7 +87,7 @@
 	//pushing in empty strings for the days from Sunday to the first day of the month
 	function renderDays(daysInMonth, month, year) {
 		var days = []
-		, firstDayOfWeek = new Date(year, parseInt(month-1), 10).getDay();
+		, firstDayOfWeek = new Date(year, parseInt(month-1, 10)).getDay();
 
 		for (var i = 0; i < firstDayOfWeek; i++) {
 			days.push('');
