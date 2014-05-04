@@ -1,0 +1,7 @@
+This calendar is pretty self-explanatory, so I won't delve into a ton of detail. It doesn't solve any real problems besides finding out the day of the week for any date in past or future history. I will probably add some functionality later on for doing something useful, like holding memos or appointments. It also could use some general reworking, as I call new Date a couple more times than I'd like.
+
+It is, however, very lean and straightforward. It's written in vanilla JavaScript and uses three Handlebars templates to manage the views (open calendar.html in your browser to open the app). Dependencies include Handlebars and a single compressed main JS file. Styles were written in LESS and compiled down to CSS. I included all the uncompressed files in this repo so you can take a look through the functions.
+
+I get a kick out of design, so normally I would have done more styling, but I wanted this calendar to be easily customizable to the aesthetic needs of the person using it. I hate excessive/unnecessary selectors, and the markup is super basic and easily stylable.
+
+Again, this is just a launch pad for a hopefully more useful toy in the future. Feel free to fork and add your own goodies.
