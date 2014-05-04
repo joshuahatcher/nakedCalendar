@@ -1,0 +1,9 @@
+<h2><span class="calendar-title" id="{{monthNum}}-{{year}}">{{month}}, {{year}}</span></h2>
+<div class="calendar-week">
+	{{#each daysOfWeek}}
+	<div class="calendar-weekday">{{this}}</div>
+	{{/each}}
+</div>
+{{#each days}}
+<div class="calendar-day"{{#if this}} data-date="{{this}}"{{/if}}>{{this}}</div>
+{{/each}}
