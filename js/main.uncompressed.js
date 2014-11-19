@@ -1,25 +1,25 @@
-(function (document) {
+(function (doc) {
 
-	var addEvent, calendarContainer
-	, doc = document
-	, months = [
-		'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-	]
-	, daysOfWeek = [
-		'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-	];
+	var addEvent, calendarContainer,
+		months = [
+			'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+		],
+		daysOfWeek = [
+			'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
+		];
 
 	addEventToTarget();
 
 	//Cross-browser compatible function for adding events
 	function addEvent(ev, el, func) {
-	 	if (el.addEventListener)
-	    el.addEventListener(ev, func, false);
+	 	if (el.addEventListener) {
+	    	el.addEventListener(ev, func, false);
+	    }
 	 	else if (el.attachEvent) {
-	    el.attachEvent('on'+ev, func);
+	    	el.attachEvent('on'+ev, func);
 	 	}
 	 	else {
-	  	el[ev] = func;
+	  		el[ev] = func;
 	 	}
 	}
 
@@ -35,14 +35,14 @@
 
 	//Create the calendar, passing in an array of days and empty strings to fill out the week rows
 	function openCalendar() {
-		var calendarClose, calendarPrev, calendarNext
-		, container = doc.createElement('div')
-		, date = new Date()
-		, monthNum = date.getMonth() + 1
-		, year = date.getFullYear()
-		, month = renderMonth(monthNum, year)
-		, daysInMonth = new Date(year, monthNum, 0).getDate()
-		, days = renderDays(daysInMonth, monthNum, year);
+		var calendarClose, calendarPrev, calendarNext,
+			container = doc.createElement('div'),
+			date = new Date(),
+			monthNum = date.getMonth() + 1,
+			year = date.getFullYear(),
+			month = renderMonth(monthNum, year),
+			daysInMonth = new Date(year, monthNum, 0).getDate(),
+			days = renderDays(daysInMonth, monthNum, year);
 
 		if (calendarContainer) {
 			calendarContainer.style.display = 'block';
@@ -74,10 +74,10 @@
 
 	//Center calendar in the window
 	function centerElement(el) {
-		var elWidth = el.clientWidth
-		, elHeight = el.clientHeight
-		, leftDist = (window.innerWidth/2) - (elWidth/2)
-		, topDist = (window.innerHeight/2) - (elHeight/2);
+		var elWidth = el.clientWidth,
+			elHeight = el.clientHeight,
+			leftDist = (window.innerWidth/2) - (elWidth/2),
+			topDist = (window.innerHeight/2) - (elHeight/2);
 
 		el.style.left = leftDist + 'px';
 		el.style.top = topDist + 'px';
@@ -86,8 +86,8 @@
 	//Create an array of the days in the given month
 	//pushing in empty strings for the days from Sunday to the first day of the month
 	function renderDays(daysInMonth, month, year) {
-		var days = []
-		, firstDayOfWeek = new Date(year, parseInt(month-1, 10)).getDay();
+		var days = [],
+			firstDayOfWeek = new Date(year, parseInt(month-1, 10)).getDay();
 
 		for (var i = 0; i < firstDayOfWeek; i++) {
 			days.push('');
@@ -110,11 +110,11 @@
 
 	//Previous/next month navigation... commonized for both buttons
 	function changeDate() {
-		var newDays, newDaysInMonth, newMonthNum, newMonth, newYear
-		, target = event.target || event.srcElement || event.originalTarget
-		, calendarPageArray = doc.getElementsByClassName('calendar-title')[0].id.split('-')
-		, currentMonthNum = calendarPageArray[0]
-		, currentYear = calendarPageArray[1];
+		var newDays, newDaysInMonth, newMonthNum, newMonth, newYear,
+			target = event.target || event.srcElement || event.originalTarget,
+			calendarPageArray = doc.getElementsByClassName('calendar-title')[0].id.split('-'),
+			currentMonthNum = calendarPageArray[0],
+			currentYear = calendarPageArray[1];
 
 		if (target.id === 'calendar-prev') {
 			//Loop back to December (of the last year) if we're in January
